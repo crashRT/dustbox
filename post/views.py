@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import PostModel
+from .forms import add_post
 
 
 def postListView(request):
@@ -16,3 +17,13 @@ def postDetailView(request, pk):
         "post": post,
     }
     return render(request, 'detail.html', context)
+
+
+def add(request):
+    if request.method == 'POST':
+        form = add_post(request.POST)
+        if form.is_valid():
+            # if form.data['user_enc']:
+            # encrypt user name
+            form.save()
+            return redirect('index')
