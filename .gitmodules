@@ -1,0 +1,3 @@
+[submodule "utf8-encode-decode"]
+	path = utf8-encode-decode
+	url = git@github.com:crashRT/utf8-encode-decode.git
