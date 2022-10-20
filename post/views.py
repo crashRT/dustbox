@@ -34,6 +34,13 @@ def postAddView(request):
                 obj.text = encodeToUTF8(obj.text)
             obj.save()
             return redirect('post_list')
+        else:
+            form = add_post()
+            context = {
+                'form': form,
+                'notice': '不正な入力です',
+            }
+            return render(request, 'form.html', context)
     else:
         form = add_post()
         context = {
