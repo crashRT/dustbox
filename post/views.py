@@ -6,7 +6,7 @@ from .forms import add_post
 def postListView(request):
     posts_list = PostModel.objects.order_by('posted_at').reverse()
     context = {
-        "post_list": posts_list,
+        "posts_list": posts_list,
     }
     return render(request, 'list.html', context)
 
