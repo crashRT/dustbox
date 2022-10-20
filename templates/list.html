@@ -11,12 +11,10 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for post in posts_list%}
         <div class="col">
-            <a href="/detail/{{post.pk}}">
-                <div class="card shadow-sm">
-                    {{post.user}}
-                    {{post.text}}
-                </div>
-            </a>
+            <div class="card shadow-sm h-100">
+                {{post.user}}
+                {{post.text}}
+            </div>
         </div>
         {% endfor %}
     </div>

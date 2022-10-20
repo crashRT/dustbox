@@ -19,7 +19,7 @@ def postDetailView(request, pk):
     return render(request, 'detail.html', context)
 
 
-def add(request):
+def postAddView(request):
     if request.method == 'POST':
         form = add_post(request.POST)
         if form.is_valid():
@@ -27,3 +27,9 @@ def add(request):
             # encrypt user name
             form.save()
             return redirect('post_list')
+    else:
+        form = add_post()
+        context = {
+            'form': form,
+        }
+        return render(request, 'form.html', context)
