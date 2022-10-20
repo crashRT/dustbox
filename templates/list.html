@@ -12,8 +12,11 @@
         {% for post in posts_list%}
         <div class="col">
             <div class="card shadow-sm h-100">
-                {{post.user}}
-                {{post.text}}
+                <div class="card-body">
+                    <p class="h5">{{post.user}}</p>
+                    <hr />
+                    <p>{{post.text}}</p>
+                </div>
             </div>
         </div>
         {% endfor %}

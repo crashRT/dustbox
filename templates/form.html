@@ -3,11 +3,16 @@
 {% endblock header %}
 
 {% block content %}
-<h1>投稿</h1>
 
-<form method="POST" novalidate>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" name="submit">Submit</button>
-</form>
+<body>
+    <div class="container">
+        <h2>投稿</h2>
+
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        </form>
+    </div>
+</body>
 {% endblock content %}
