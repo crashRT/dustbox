@@ -5,8 +5,8 @@
 {% block content %}
 
 <body>
-    <div class="container">
-        <h2>投稿する</h2>
+    <div class="container-sm">
+        <h2>投稿フォーム</h2>
 
         <form method="POST" novalidate>
             {% csrf_token %}
@@ -14,29 +14,38 @@
                 <div class="container py-3">
                     <div class="container">
                         <label for="{{form.user.id_for_label}}" class="h4 py-1">{{form.user.label}}</label> <br>
-                        {{form.user}}
+                        <!-- {{form.user}} -->
+                        <input type="{{form.user.widget.input_type}}" class="form-control" name="{{form.user.name}}"
+                            id="{{form.user.id_for_label}}">
                     </div>
 
-                    <div class="container ms-2">
-                        {{form.user_enc}}
-                        <label for="{{form.user_enc.id_for_label}}">{{form.user_enc.label}}</label>
+                    <div class="container ms-4 py-2 form-check">
+                        <input type="checkbox" class="form-check-input" name="{{form.user_enc.name}}"
+                            id="{{form.user_enc.id_for_label}}">
+                        <label for="{{form.user_enc.id_for_label}}"
+                            class="form-check-label">{{form.user_enc.label}}</label>
                     </div>
                 </div>
                 <div class="container py-3">
-                    <label for="{{form.text.id_for_label}}" class="h4 py-2">{{form.text.label}}</label>
                     <div class="container">
-                        {{form.text}}
+                        <label for="{{form.text.id_for_label}}" class="h4 py-1">{{form.text.label}}</label>
+                        <textarea type="{{form.text.widget.input_type}}" class="form-control form-control-lg"
+                            name="{{form.text.name}}" id="{{form.text.id_for_label}}"></textarea>
                     </div>
 
-                    <div class="container ms-2">
-                        {{form.text_enc}}
-                        <label for="{{form.text_enc.id_for_label}}">{{form.text_enc.label}}</label>
+                    <div class="container ms-4 py-2 form-check">
+                        <input type="checkbox" class="form-check-input" name="{{form.text_enc.name}}"
+                            id="{{form.text_enc.id_for_label}}">
+                        <label for="{{form.text_enc.id_for_label}}"
+                            class="form-check-label">{{form.text_enc.label}}</label>
                     </div>
                     {{form.posted_at}}
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            <div class="container">
+                <button type="submit" class="btn btn-primary mx-2" name="submit">Submit</button>
+                <a href="{% url 'post_list' %}" class="btn btn-dark mx-2">TOPへ</a>
+            </div>
         </form>
     </div>
 </body>
