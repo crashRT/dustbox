@@ -6,11 +6,36 @@
 
 <body>
     <div class="container">
-        <h2>投稿</h2>
+        <h2>投稿する</h2>
 
         <form method="POST" novalidate>
             {% csrf_token %}
-            {{ form.as_p }}
+            <div class="form-group">
+                <div class="container py-3">
+                    <div class="container">
+                        <label for="{{form.user.id_for_label}}" class="h4 py-1">{{form.user.label}}</label> <br>
+                        {{form.user}}
+                    </div>
+
+                    <div class="container ms-2">
+                        {{form.user_enc}}
+                        <label for="{{form.user_enc.id_for_label}}">{{form.user_enc.label}}</label>
+                    </div>
+                </div>
+                <div class="container py-3">
+                    <label for="{{form.text.id_for_label}}" class="h4 py-2">{{form.text.label}}</label>
+                    <div class="container">
+                        {{form.text}}
+                    </div>
+
+                    <div class="container ms-2">
+                        {{form.text_enc}}
+                        <label for="{{form.text_enc.id_for_label}}">{{form.text_enc.label}}</label>
+                    </div>
+                    {{form.posted_at}}
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         </form>
     </div>
