@@ -26,4 +26,4 @@ def add(request):
             # if form.data['user_enc']:
             # encrypt user name
             form.save()
-            return redirect('index')
+            return redirect('post_list')
