@@ -8,3 +8,11 @@ def postListView(request):
         "post_list": post_list,
     }
     return render(request, 'list.html', context)
+
+
+def postDetailView(request, pk):
+    post = PostModel.objects.get(pk=pk)
+    context = {
+        "post": post,
+    }
+    return render(request, 'detail.html', context)
