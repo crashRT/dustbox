@@ -3,9 +3,9 @@ from .models import PostModel
 
 
 def postListView(request):
-    post_list = PostModel.objects.order_by('posted_at').reverse()
+    posts_list = PostModel.objects.order_by('posted_at').reverse()
     context = {
-        "post_list": post_list,
+        "post_list": posts_list,
     }
     return render(request, 'list.html', context)
 
