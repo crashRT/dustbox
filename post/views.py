@@ -26,6 +26,8 @@ def postAddView(request):
         form = add_post(request.POST)
         if form.is_valid():
             obj = form.save(commit=False)
+            if not obj.user:
+                obj.user = "どこかのだれか"
             if obj.user_enc:
                 obj.user = encodeToUTF8(obj.user)
             if obj.text_enc:
