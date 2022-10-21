@@ -22,7 +22,7 @@
     --bs-gray-700: #495057;
     --bs-gray-800: #343a40;
     --bs-gray-900: #212529;
-    --bs-primary: #0d6efd;
+    --bs-primary: #6ca7ff;
     --bs-secondary: #6c757d;
     --bs-success: #198754;
     --bs-info: #0dcaf0;
@@ -61,12 +61,25 @@
     --bs-border-radius-xl: 1rem;
     --bs-border-radius-2xl: 2rem;
     --bs-border-radius-pill: 50rem;
-    --bs-link-color: #3f53b3;
-    --bs-link-hover-color: #B3505F;
+    --bs-link-color: #6ca7ff;
+    --bs-link-hover-color: #ffc107;
     --bs-code-color: #d63384;
     --bs-highlight-bg: #fff3cd;
 }
 
 .nav-link.active {
-    background-color: var(--bs-link-color) !important;
+    background-color: var(--bs-primary) !important;
+}
+
+.text-primary{
+    color: var(--bs-primary) !important;
+}
+
+.btn-primary{
+    background-color: var(--bs-primary);
+}
+
+.form-control, .form-control:focus{
+    color: var(--bs-white) ;
+    background-color: var(--bs-dark) ;
 }
