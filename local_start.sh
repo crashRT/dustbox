@@ -1,0 +1,1 @@
+python3 manage.py runserver --settings dustbox.local_settings
