@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
+
+from utf8_encode_decode.encode import encodeToUTF8
 from .models import PostModel
 from .forms import add_post
 
@@ -23,10 +25,22 @@ def postAddView(request):
     if request.method == 'POST':
         form = add_post(request.POST)
         if form.is_valid():
-            # if form.data['user_enc']:
-            # encrypt user name
-            form.save()
+            obj = form.save(commit=False)
+            if not obj.user:
+                obj.user = "どこかのだれか"
+            if obj.user_enc:
+                obj.user = encodeToUTF8(obj.user)
+            if obj.text_enc:
+                obj.text = encodeToUTF8(obj.text)
+            obj.save()
             return redirect('post_list')
+        else:
+            form = add_post()
+            context = {
+                'form': form,
+                'notice': '不正な入力です',
+            }
+            return render(request, 'form.html', context)
     else:
         form = add_post()
         context = {
