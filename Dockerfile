@@ -9,4 +9,4 @@ COPY ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 RUN mkdir -p /var/run/gunicorn
 
-CMD ["gunicorn", "config.wsgi", "--bind=unix:/var/run/gunicorn/gunicorn.sock"]
+CMD ["gunicorn", "dustbox.wsgi", "--bind=unix:/var/run/gunicorn/gunicorn.sock"]
