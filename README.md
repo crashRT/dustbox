@@ -14,7 +14,7 @@ https://docs.docker.com/engine/install/ubuntu/ などを参考に．
 ### .env などの準備
 - `.env.example` を複製して名前を `.env` にする．
 - `SECRET_KEY`には仮の値が入っている．そのままでも動くが，セキュリティ的によくないので変更する．
-  - django, python3 を導入済みであれば`python3 get_random_secret_key.py`
+  - django, python3 を導入済みであれば`python3 get_secret_key.py`
   - そうでなければ，[Django 秘密鍵ジェネレーター](https://miniwebtool.com/ja/django-secret-key-generator/)などを用いて生成し，置き換える．
 
 ### イメージのビルド
