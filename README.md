@@ -7,13 +7,13 @@
 
 ## 使い方
 
-docker engine, docker-compose-plugin が必要．
+`docker engine`, `docker-compose-plugin` が必要．
 
 https://docs.docker.com/engine/install/ubuntu/ などを参考に．
 
 ### .env などの準備
 - `.env.example` を複製して名前を `.env` にする．
-- `SECRET_KEY`には仮の値を入れています．そのままでも動くが，セキュリティ的によくないので変更する
+- `SECRET_KEY`には仮の値が入っている．そのままでも動くが，セキュリティ的によくないので変更する．
   - django, python3 を導入済みであれば`python3 get_random_secret_key.py`
   - そうでなければ，[Django 秘密鍵ジェネレーター](https://miniwebtool.com/ja/django-secret-key-generator/)などを用いて生成し，置き換える．
 
@@ -34,7 +34,7 @@ sudo docker compose down
 ```
 
 ## 開発について
-python3.10, django 4.1 を使っている．
+`python3.10`, `django 4.1` を使っている．
 
 ### 開発用サーバー起動
 ```
