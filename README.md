@@ -36,6 +36,11 @@ sudo docker compose down
 ## 開発について
 `python3.10`, `django 4.1` を使っている．
 
+### pull submodule (初回のみ)
+```
+git submodule update --init --recursive
+```
+
 ### 開発用サーバー起動
 ```
 python manage.py runserver --settings dustbox.local_settings
