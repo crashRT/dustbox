@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from django.http import Http404
+from django.http.response import JsonResponse
 
 from utf8_encode_decode.encode import encodeToUTF8
 from .models import PostModel
@@ -47,3 +49,14 @@ def postAddView(request):
             'form': form,
         }
         return render(request, 'form.html', context)
+
+
+def ApiGoodView(request, pk):
+    try:
+        obj = PostModel.objects.get(pk=pk)  # pkを元にPostテーブルの対象記事レコードを取得する
+    except PostModel.DoesNotExist:
+        raise Http404
+    obj.good += 1  # ここでいいねの数を増やす
+    obj.save()  # 保存をする
+
+    return JsonResponse({"good": obj.good})  # いいねの数をJavaScriptに渡す
