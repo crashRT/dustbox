@@ -17,10 +17,8 @@
                     <p class="small text-muted text-end align-bottom">{{post.posted_at}}</p>
                     <hr />
                     <p>{{post.text}}</p>
-                    <div class="good-flame btn btn-danger">
-                        <a id="good-a" onclick="api_good('{{post.pk}}')">GOOD {{post.good}}| <span
-                                id="good_count_{{post.pk}}"></span></a>
-                    </div>
+                    <button class="btn btn-primary" id="good-{{post.pk}}" onclick="api_good('{{post.pk}}')">GOOD
+                        {{post.good}}</span></button>
                 </div>
             </div>
         </div>
@@ -28,16 +26,10 @@
     </div>
 </div>
 <script>
-    // ページが読み込まれた時にDBから記事に紐づいた「いいね」の数を取得する
-    // window.onload = function () {
-    //     document.getElementById("good_count_{{post.pk}}").innerText = "{{ post.good }}"
-    // }
-
     // api_good関数が設定されたaタグがクリックされたら、非同期通信でgoodのカウントを1増やし画面に結果を反映する
     function api_good(pk) {
         // いいねの数を増やす記事idをJavaScriptに渡す処理
         var api_url = "api/good/" + pk;
-        var btn = document.getElementById("good_count_" + pk);
         // 非同期通信をするための関数をインタンス化する
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
@@ -45,9 +37,8 @@
             if (request.readyState === 4 && request.status === 200) {
                 var received_data = JSON.parse(request.responseText);
                 // 画面にいいねの数を反映する
-                btn.innerText = received_data.good;
                 // 画面をリロードするまでボタンを押せなくする処理
-                document.getElementById("good-a-" + pk).removeAttribute("onclick");
+                document.getElementById("good-" + pk).disabled = true;
             }
         }
         // サーバーとの通信を実行する処理
