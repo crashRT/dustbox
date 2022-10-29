@@ -8,4 +8,5 @@ class PostModel(models.Model):
     user_enc = models.BooleanField()
     text = models.TextField()
     text_enc = models.BooleanField()
+    good = models.IntegerField('Good', default=0)
     posted_at = models.DateTimeField(default=timezone.now)

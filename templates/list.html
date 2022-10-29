@@ -14,13 +14,37 @@
             <div class="card text-white bg-dark border-secondary shadow-sm h-100">
                 <div class="card-body">
                     <p class="h5 text-primary">{{post.pk}}) {{post.user}}</p>
-                    <p class="small text-muted text-end align-bottom">{{post.posted_at}}</p>
+                    <p class="small text-muted align-text-bottom text-end">{{post.posted_at}}
+                    </p>
                     <hr />
                     <p>{{post.text}}</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-outline-light btn-sm" id="good-{{post.pk}}"
+                        onclick="api_good('{{post.pk}}')">おねんね
+                        {{post.good}}</span></button>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+<script>
+    function api_good(pk) {
+        var api_url = "api/good/" + pk;
+        // 非同期通信をするための関数をインタンス化する
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            // 非同期通信が完了したら以下のifが処理される。request.readyState === 4部分が非同期処理完了を意味している
+            if (request.readyState === 4 && request.status === 200) {
+                // 画面をリロードするまでボタンを押せなくする処理
+                document.getElementById("good-" + pk).disabled = true;
+            }
+        }
+        // サーバーとの通信を実行する処理
+        request.open("GET", api_url);
+        request.send();
+    }
+
+</script>
 {% endblock content %}
