@@ -43,5 +43,5 @@ git submodule update --init --recursive
 
 ### 開発用サーバー起動
 ```
-python manage.py runserver --settings dustbox.local_settings
+sh local_start.sh
 ```
