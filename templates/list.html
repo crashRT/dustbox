@@ -14,10 +14,14 @@
             <div class="card text-white bg-dark border-secondary shadow-sm h-100">
                 <div class="card-body">
                     <p class="h5 text-primary">{{post.pk}}) {{post.user}}</p>
-                    <p class="small text-muted text-end align-bottom">{{post.posted_at}}</p>
+                    <p class="small text-muted align-text-bottom text-end">{{post.posted_at}}
+                    </p>
                     <hr />
                     <p>{{post.text}}</p>
-                    <button class="btn btn-light" id="good-{{post.pk}}" onclick="api_good('{{post.pk}}')">おねんね
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-outline-light btn-sm" id="good-{{post.pk}}"
+                        onclick="api_good('{{post.pk}}')">おねんね
                         {{post.good}}</span></button>
                 </div>
             </div>
