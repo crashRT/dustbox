@@ -17,6 +17,9 @@ https://docs.docker.com/engine/install/ubuntu/ などを参考に．
   - django, python3 を導入済みであれば`python3 get_secret_key.py`
   - そうでなければ，[Django 秘密鍵ジェネレーター](https://miniwebtool.com/ja/django-secret-key-generator/)などを用いて生成し，置き換える．
 
+
+- Docker の設定がまだちゃんとできていないので，django を入れて `python manage.py migrate` `python manage.py collectstatic` を事前に実行しないといけない状態になっている．
+
 ### イメージのビルド
 
 ```
