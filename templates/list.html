@@ -27,7 +27,28 @@
             </div>
         </div>
         {% endfor %}
+
+
     </div>
+</div>
+<div class="container py-2 align-items-center">
+    {% if pre_index %}
+    {% if pre_index == 1 %}
+    <a href="{% url  'post_top' %}">
+        <button class="btn btn-secondary">Pre</button>
+    </a>
+    {% else %}
+    <a href="{% url  'post_list' pre_index %}">
+        <button>Pre</button>
+    </a>
+    {% endif %}
+    {% endif %}
+    {% if next_index %}
+    <a href="{% url  'post_list' next_index %}">
+        <button class="btn btn-secondary">Next</button>
+    </a>
+    {% endif %}
+
 </div>
 <script>
     function api_good(pk) {

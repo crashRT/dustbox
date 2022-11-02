@@ -7,10 +7,22 @@ from .models import PostModel
 from .forms import add_post
 
 
-def postListView(request):
-    posts_list = PostModel.objects.order_by('posted_at').reverse()
+def postTopView(request):
+    posts_list = PostModel.objects.order_by('posted_at').reverse()[:50]
     context = {
         "posts_list": posts_list,
+        "next_index": 2,
+    }
+    return render(request, 'list.html', context)
+
+
+def postListView(request, pk):
+    posts_list = PostModel.objects.order_by(
+        'posted_at').reverse()[pk*50:(pk+1)*50]
+    context = {
+        "posts_list": posts_list,
+        "pre_index": pk-1,
+        "next_index": pk+1,
     }
     return render(request, 'list.html', context)
 
@@ -35,7 +47,7 @@ def postAddView(request):
             if obj.text_enc:
                 obj.text = encodeToUTF8(obj.text)
             obj.save()
-            return redirect('post_list')
+            return redirect('post_top')
         else:
             form = add_post()
             context = {
