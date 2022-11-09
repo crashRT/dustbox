@@ -11,28 +11,26 @@ def postTopView(request):
     posts_list = PostModel.objects.order_by('posted_at').reverse()[:50]
     context = {
         "posts_list": posts_list,
-        "next_index": 2,
     }
+    if (PostModel.objects.filter(pk=50).exists()):
+        context["next_index"] = 2
     return render(request, 'list.html', context)
 
 
-def postListView(request, pk):
+def postListView(request, index):
+
+    if (PostModel.objects.filter(pk=index*50)):
+        raise Http404("There is no post...")
+
     posts_list = PostModel.objects.order_by(
-        'posted_at').reverse()[pk*50:(pk+1)*50]
+        'posted_at').reverse()[index*50:(index+1)*50]
     context = {
         "posts_list": posts_list,
-        "pre_index": pk-1,
-        "next_index": pk+1,
+        "pre_index": index-1,
     }
+    if (PostModel.objects.filter(pk=(index+1)*50).exists()):
+        context["next_index"] = index+1
     return render(request, 'list.html', context)
-
-
-def postDetailView(request, pk):
-    post = PostModel.objects.get(pk=pk)
-    context = {
-        "post": post,
-    }
-    return render(request, 'detail.html', context)
 
 
 def postAddView(request):
