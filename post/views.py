@@ -37,6 +37,22 @@ def postAddView(request):
                 obj.user = encodeToUTF8(obj.user)
             if obj.text_enc:
                 obj.text = encodeToUTF8(obj.text)
+            if len(obj.user) > 20:
+                form = add_post()
+                context = {
+                    'form': form,
+                    'notice': '名前は50文字以内で入力してください',
+                }
+                return render(request, 'form.html', context)
+
+            if len(obj.text) > 500:
+                form = add_post()
+                context = {
+                    'form': form,
+                    'notice': '本文は500文字以内で入力してください',
+                }
+                return render(request, 'form.html', context)
+
             obj.save()
             return redirect('post_top')
         else:

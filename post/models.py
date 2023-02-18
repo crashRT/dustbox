@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 class PostModel(models.Model):
-    user = models.CharField(max_length=20, null=True,
+    user = models.CharField(max_length=30, null=True,
                             blank=True, help_text="名無しでもOK")
     user_enc = models.BooleanField()
     text = models.TextField()
