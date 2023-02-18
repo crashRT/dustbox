@@ -6,7 +6,7 @@ from utf8_encode_decode.encode import encodeToUTF8
 from .models import PostModel
 from .forms import add_post
 
-PAGESIZE = 10
+PAGESIZE = 9
 
 
 def postListView(request, index=1):
@@ -15,12 +15,13 @@ def postListView(request, index=1):
         raise Http404("There is no post...")
 
     posts_list = PostModel.objects.order_by(
-        'posted_at')[index*PAGESIZE:(index+1)*PAGESIZE]
+        'posted_at').reverse()[(index-1)*PAGESIZE:index*PAGESIZE]
     context = {
         "posts_list": posts_list,
-        "pre_index": index-1,
     }
-    if (PostModel.objects.filter(pk=(index+1)*PAGESIZE).exists()):
+    if index > 1:
+        context["pre_index"] = index-1
+    if (PostModel.objects.filter(pk=index*PAGESIZE).exists()):
         context["next_index"] = index+1
     return render(request, 'list.html', context)
 
