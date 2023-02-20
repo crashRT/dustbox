@@ -37,7 +37,7 @@ sudo docker compose down
 ```
 
 ## 開発について
-`python3.10`, `django 4.1` を使っている．
+`python3.10` を使っている．
 
 ### pull submodule (初回のみ)
 ```
